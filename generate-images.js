@@ -36,20 +36,20 @@ Object.entries(config).forEach(([imageName, settings]) => {
   
   // SVGを生成
   const svg = `
-    <?xml version="1.0" encoding="UTF-8"?>
     <svg width="800" height="${imageHeight}" viewBox="0 0 800 ${imageHeight}" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <style type="text/css">
-          @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
-          text {
-            font-family: 'Noto Sans JP', sans-serif;
-          }
-        </style>
-      </defs>
       <rect width="800" height="${imageHeight}" fill="${settings.color}"/>
-      <text x="400" y="80" font-size="${settings.font_size}" fill="white">
+      <text x="400" y="80" font-family="sans-serif" font-size="${settings.font_size}" fill="white">
         ${formattedText}
       </text>
+      <style>
+        @font-face {
+          font-family: 'NotoSansJP';
+          src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+        }
+        text {
+          font-family: 'NotoSansJP', sans-serif;
+        }
+      </style>
     </svg>
   `;
   
