@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const sharp = require('sharp');
 
 // 設定を読み込む
 const config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
@@ -9,7 +8,6 @@ const config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
 const distDir = 'dist';
 if (!fs.existsSync(distDir)) {
   fs.mkdirSync(distDir, { recursive: true });
-  console.log(`Created directory: ${distDir}`);
 }
 
 // テキストを複数行に分割
@@ -29,45 +27,25 @@ function calculateHeight(text, fontSize) {
   return Math.max(200, 100 + (lines.length * lineHeight) + 80);
 }
 
-// 各画像を生成して同期的に保存
-async function generateImages() {
-  console.log('Starting image generation...');
-  
+// 各SVGを生成して保存
+function generateSVGs() {
   for (const [imageName, settings] of Object.entries(config)) {
     try {
-      const fontSize = settings.font_size.replace('px', '');
+      const fontSize = parseInt(settings.font_size);
       const imageHeight = calculateHeight(settings.text, fontSize);
-      const formattedText = formatMultilineText(settings.text, fontSize);
       
-      // SVGを生成
+      // 単純なSVG（文字化けしないよう配慮）
       const svg = `<?xml version="1.0" encoding="UTF-8"?>
 <svg width="800" height="${imageHeight}" viewBox="0 0 800 ${imageHeight}" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <style type="text/css">
-      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
-      text {
-        font-family: 'Noto Sans JP', sans-serif;
-      }
-    </style>
-  </defs>
   <rect width="800" height="${imageHeight}" fill="${settings.color}"/>
-  <text x="400" y="80" font-size="${settings.font_size}" fill="white">
-    ${formattedText}
-  </text>
+  <text x="400" y="100" font-family="sans-serif" font-size="${fontSize}" fill="white" text-anchor="middle">${settings.text}</text>
 </svg>`;
       
-      // SVGをバッファに変換
-      const svgBuffer = Buffer.from(svg);
+      // SVGファイルを保存
+      fs.writeFileSync(path.join(distDir, `${imageName}.svg`), svg);
       
-      // 画像ファイル名
-      const jpgFilePath = path.join(distDir, `${imageName}.jpg`);
-      const pngFilePath = path.join(distDir, `${imageName}.png`);
-      
-      // SVGをJPGとPNGに変換して保存
-      await sharp(svgBuffer).jpeg().toFile(jpgFilePath);
-      await sharp(svgBuffer).png().toFile(pngFilePath);
-      
-      console.log(`Successfully generated ${jpgFilePath} and ${pngFilePath}`);
+      // アクセス用にjpgファイル名でもSVGを保存
+      fs.writeFileSync(path.join(distDir, `${imageName}.jpg`), svg);
     } catch (err) {
       console.error(`Error generating ${imageName}:`, err);
     }
@@ -78,24 +56,23 @@ async function generateImages() {
 <html>
 <head>
   <title>Dynamic Banners</title>
+  <meta charset="UTF-8">
 </head>
 <body>
   <h1>Generated Images</h1>
   ${Object.keys(config).map(name => `
   <div style="margin: 20px 0;">
     <h2>${name}</h2>
-    <img src="${name}.jpg" alt="${name}" style="max-width: 100%;">
+    <p><a href="./${name}.svg">${name}.svg</a> | <a href="./${name}.jpg">${name}.jpg</a></p>
+    <img src="./${name}.svg" alt="${name}" style="max-width: 100%;">
   </div>
   `).join('')}
 </body>
 </html>`;
   
   fs.writeFileSync(path.join(distDir, 'index.html'), htmlContent);
-  console.log('Generated index.html');
 }
 
 // 関数を実行
-generateImages().catch(err => {
-  console.error('Fatal error:', err);
-  process.exit(1);
-});
+generateSVGs();
+console.log('All images generated successfully');
