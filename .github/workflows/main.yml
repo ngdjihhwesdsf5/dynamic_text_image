@@ -11,7 +11,8 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
       
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -21,10 +22,13 @@ jobs:
       - name: Install dependencies
         run: npm install
         
+      - name: List files
+        run: ls -la
+        
       - name: Generate images
         run: |
-          mkdir -p dist
           node generate-images.js
+          ls -la dist
         
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
