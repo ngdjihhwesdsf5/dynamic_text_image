@@ -1,0 +1,12 @@
+{
+  "name": "dynamic-banner",
+  "version": "1.0.0",
+  "description": "Dynamic banner images with configurable text",
+  "main": "generate-images.js",
+  "scripts": {
+    "build": "node generate-images.js"
+  },
+  "dependencies": {
+    "sharp": "^0.32.1"
+  }
+}
