@@ -16,7 +16,7 @@ function formatMultilineText(text, fontSize) {
   const lineHeight = parseInt(fontSize) * 1.2;
   
   return lines.map((line, index) => 
-    `<tspan x="400" dy="${index === 0 ? 0 : lineHeight}" text-anchor="middle">${line}</tspan>`
+    `<tspan x="50" dy="${index === 0 ? 0 : lineHeight}">${line}</tspan>`
   ).join('');
 }
 
@@ -38,7 +38,7 @@ function generateSVGs() {
       const svg = `<?xml version="1.0" encoding="UTF-8"?>
 <svg width="800" height="${imageHeight}" viewBox="0 0 800 ${imageHeight}" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="${imageHeight}" fill="${settings.color}"/>
-  <text x="400" y="100" font-family="sans-serif" font-size="${fontSize}" fill="black">
+  <text x="50" y="50" font-family="sans-serif" font-size="${fontSize}" fill="black">
     ${formatMultilineText(settings.text, settings.font_size)}
   </text>
 </svg>`;
