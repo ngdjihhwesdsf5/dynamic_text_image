@@ -23,9 +23,10 @@
       "text": "キャンペーン利用はこちら",
       "color": "#FFFFFF",
       "background_color": "#ff6f61",
-      "font_size": "18px",
+      "font_size": "25px",
       "font_weight": "bold",
       "text_align": "center",
+      "vertical_align": "middle",
       "border_radius": "8px",
       "padding": "14px 28px",
       "text_color": "white"
