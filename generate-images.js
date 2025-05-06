@@ -21,12 +21,11 @@ function formatMultilineText(text, fontSize) {
 }
 
 // SVGの高さ計算関数を修正（バナー用の余白を追加）
-function calculateHeight(text, fontSize, hasBanner) {
+function calculateHeight(text, fontSize) {
   const lines = text.split('\n');
   const lineHeight = parseInt(fontSize) * 1.2;
-  const textHeight = 100 + (lines.length * lineHeight);
-  const bannerHeight = hasBanner ? 60 : 0; // バナーの高さ
-  return Math.max(200, textHeight + bannerHeight + 80);
+  const textHeight = 30 + (lines.length * lineHeight) + 10; // 上部余白30px、下部余白10px
+  return Math.max(100, textHeight);
 }
 
 // 各SVGを生成して保存
