@@ -38,13 +38,15 @@ function generateSVGs() {
       const svg = `<?xml version="1.0" encoding="UTF-8"?>
 <svg width="800" height="${imageHeight}" viewBox="0 0 800 ${imageHeight}" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="${imageHeight}" fill="${settings.color}"/>
-  <text x="400" y="100" font-family="sans-serif" font-size="${fontSize}" fill="white" text-anchor="middle">${settings.text}</text>
+  <text x="400" y="100" font-family="sans-serif" font-size="${fontSize}" fill="white">
+    ${formatMultilineText(settings.text, settings.font_size)}
+  </text>
 </svg>`;
       
       // SVGファイルを保存
       fs.writeFileSync(path.join(distDir, `${imageName}.svg`), svg);
       
-      // アクセス用にjpgファイル名でもSVGを保存
+      // アクセス用にjpgファイル名でもSVGを保存。ただし、実際にJPG生成始める場合は、この処理改善要する。
       fs.writeFileSync(path.join(distDir, `${imageName}.jpg`), svg);
     } catch (err) {
       console.error(`Error generating ${imageName}:`, err);
