@@ -34,25 +34,15 @@ function generateSVGs() {
   for (const [imageName, settings] of Object.entries(config)) {
     try {
       const fontSize = parseInt(settings.font_size);
-      const hasBanner = !!settings.banner;
-      const imageHeight = calculateHeight(settings.text, fontSize, hasBanner);
+      const imageHeight = calculateHeight(settings.text, fontSize);
       
-      // テキスト下のバナー位置を計算
-      const lines = settings.text.split('\n');
-      const lineHeight = parseInt(settings.font_size) * 1.2;
-      const textBottomY = 100 + (lines.length * lineHeight);
-      
+      // 単純なSVG（文字化けしないよう配慮）
       const svg = `<?xml version="1.0" encoding="UTF-8"?>
 <svg width="800" height="${imageHeight}" viewBox="0 0 800 ${imageHeight}" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="${imageHeight}" fill="${settings.color}"/>
-  <text x="0" y="20" font-family="sans-serif" font-size="${fontSize}" fill="black">
+  <text x="0" y="30" font-family="sans-serif" font-size="${fontSize}" fill="black">
     ${formatMultilineText(settings.text, settings.font_size)}
   </text>
-  ${settings.banner ? `
-  <a href="${settings.banner.link || ''}" target="_blank">
-    <rect x="50" y="${textBottomY + 20}" width="700" height="50" rx="10" fill="${settings.banner.color || '#0066CC'}" />
-    <text x="400" y="${textBottomY + 20 + 35}" font-family="sans-serif" font-size="24px" fill="${settings.banner.text_color || '#FFFFFF'}" text-anchor="middle">${settings.banner.text || '詳細はこちら'}</text>
-  </a>` : ''}
 </svg>`;
       
       // SVGファイルを保存
