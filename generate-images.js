@@ -20,11 +20,13 @@ function formatMultilineText(text, fontSize) {
   ).join('');
 }
 
-// 画像の高さを計算
-function calculateHeight(text, fontSize) {
+// SVGの高さ計算関数を修正（バナー用の余白を追加）
+function calculateHeight(text, fontSize, hasBanner) {
   const lines = text.split('\n');
   const lineHeight = parseInt(fontSize) * 1.2;
-  return Math.max(200, 100 + (lines.length * lineHeight) + 80);
+  const textHeight = 100 + (lines.length * lineHeight);
+  const bannerHeight = hasBanner ? 60 : 0; // バナーの高さ
+  return Math.max(200, textHeight + bannerHeight + 80);
 }
 
 // 各SVGを生成して保存
@@ -32,15 +34,25 @@ function generateSVGs() {
   for (const [imageName, settings] of Object.entries(config)) {
     try {
       const fontSize = parseInt(settings.font_size);
-      const imageHeight = calculateHeight(settings.text, fontSize);
+      const hasBanner = !!settings.banner;
+      const imageHeight = calculateHeight(settings.text, fontSize, hasBanner);
       
-      // 単純なSVG（文字化けしないよう配慮）
+      // テキスト下のバナー位置を計算
+      const lines = settings.text.split('\n');
+      const lineHeight = parseInt(settings.font_size) * 1.2;
+      const textBottomY = 100 + (lines.length * lineHeight);
+      
       const svg = `<?xml version="1.0" encoding="UTF-8"?>
 <svg width="800" height="${imageHeight}" viewBox="0 0 800 ${imageHeight}" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="${imageHeight}" fill="${settings.color}"/>
-  <text x="0" y="30" font-family="sans-serif" font-size="${fontSize}" fill="black">
+  <text x="50" y="100" font-family="sans-serif" font-size="${fontSize}" fill="black">
     ${formatMultilineText(settings.text, settings.font_size)}
   </text>
+  ${settings.banner ? `
+  <a href="${settings.banner.link || ''}" target="_blank">
+    <rect x="50" y="${textBottomY + 20}" width="700" height="50" rx="10" fill="${settings.banner.color || '#0066CC'}" />
+    <text x="400" y="${textBottomY + 20 + 35}" font-family="sans-serif" font-size="24px" fill="${settings.banner.text_color || '#FFFFFF'}" text-anchor="middle">${settings.banner.text || '詳細はこちら'}</text>
+  </a>` : ''}
 </svg>`;
       
       // SVGファイルを保存
