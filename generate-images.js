@@ -11,26 +11,19 @@ if (!fs.existsSync(distDir)) {
 }
 
 // テキストを複数行に分割
-function formatMultilineText(text, fontSize, textAlign, verticalAlign) {
+function formatMultilineText(text, fontSize, textAlign) {
   const lines = text.split('\n');
   const lineHeight = parseInt(fontSize) * 1.2;
   const xPosition = textAlign === 'center' ? '400' : '0';
   const textAnchor = textAlign === 'center' ? 'middle' : 'start';
   
-  // 垂直中央揃えの場合のみ特別な処理を行う
-  if (verticalAlign === 'middle') {
-    const totalHeight = lines.length * lineHeight;
-    const startY = -(totalHeight / 2) + (lineHeight / 2);
-    
-    return lines.map((line, index) => 
-      `<tspan x="${xPosition}" dy="${index === 0 ? startY : lineHeight}" text-anchor="${textAnchor}">${line}</tspan>`
-    ).join('');
-  } else {
-    // 従来どおりの処理（上揃え）
-    return lines.map((line, index) => 
-      `<tspan x="${xPosition}" dy="${index === 0 ? 0 : lineHeight}" text-anchor="${textAnchor}">${line}</tspan>`
-    ).join('');
-  }
+  // 複数行の場合、中央揃えするための調整
+  const totalHeight = lines.length * lineHeight;
+  const startY = -(totalHeight / 2) + (lineHeight / 2);
+  
+  return lines.map((line, index) => 
+    `<tspan x="${xPosition}" dy="${index === 0 ? startY : lineHeight}" text-anchor="${textAnchor}">${line}</tspan>`
+  ).join('');
 }
 
 // SVGの高さ計算関数
@@ -40,8 +33,7 @@ function calculateHeight(text, fontSize, padding) {
   const paddingValues = padding ? padding.split(' ').map(p => parseInt(p)) : [0];
   const paddingTop = paddingValues[0] || 0;
   const paddingBottom = paddingValues.length > 1 ? paddingValues[2] : paddingTop;
-  // 最低限の余白を確保
-  const textHeight = 30 + (lines.length * lineHeight) + 10 + paddingTop + paddingBottom;
+  const textHeight = (lines.length * lineHeight) + paddingTop + paddingBottom;
   return Math.max(100, textHeight);
 }
 
@@ -63,12 +55,11 @@ function generateSVGs() {
       const borderRadius = settings.border_radius || '0';
       const textColor = settings.text_color || 'black';
       
-      // テキストのY位置を計算
+      // テキストのY位置を計算（垂直中央揃えに対応）
       let yPosition;
       if (verticalAlign === 'middle') {
         yPosition = imageHeight / 2;
       } else {
-        // 従来どおりの上部からの配置
         yPosition = 30 + (parseInt(padding.split(' ')[0]) || 0);
       }
       
@@ -83,9 +74,9 @@ function generateSVGs() {
     font-family="sans-serif" 
     font-size="${fontSize}" 
     font-weight="${fontWeight}"
-    fill="${textColor || 'black'}"
+    fill="${textColor}"
     text-anchor="${textAlign === 'center' ? 'middle' : 'start'}">
-    ${formatMultilineText(settings.text, settings.font_size, textAlign, verticalAlign)}
+    ${formatMultilineText(settings.text, settings.font_size, textAlign)}
   </text>
 </svg>`;
       
