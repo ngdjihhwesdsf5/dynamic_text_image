@@ -18,5 +18,16 @@
       "text": "★☆★☆★☆★☆★☆★☆★☆★☆\nCAPIMA（Amazonギフト1,000円分プレゼント）\n★☆★☆★☆★☆★☆★☆★☆★☆\n \nアバンダンティアキャピタル株式会社（東京都千代田区有楽町）が運営する、\n融資型クラウドファンディング・サービス（ソーシャルレンディング）。\n特定の招待コード（CAPIMA2305）を入力して、\n新規投資家登録（口座開設）を完了したユーザーを対象に、\nAmazonギフト1,000円分をプレゼントするキャンペーンが開催されています。",
       "color": "#FFFFFF",
       "font_size": "20px"
-    }  
+    },
+    "image05": {
+      "text": "キャンペーン利用はこちら",
+      "color": "#FFFFFF",
+      "background_color": "#ff6f61",
+      "font_size": "18px",
+      "font_weight": "bold",
+      "text_align": "center",
+      "border_radius": "8px",
+      "padding": "14px 28px",
+      "text_color": "white"
+    }      
   }
