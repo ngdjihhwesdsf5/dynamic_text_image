@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="436" viewBox="0 0 800 436" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="436" fill="#FFFFFF" rx="0" ry="0"/>
+  <text 
+    x="0" 
+    y="30" 
+    font-family="sans-serif" 
+    font-size="30" 
+    font-weight="normal"
+    fill="black"
+    text-anchor="start">
+    <tspan x="0" dy="0" text-anchor="start">★☆★☆★☆★☆★☆★☆★☆★☆</tspan><tspan x="0" dy="36" text-anchor="start">CAPIMA</tspan><tspan x="0" dy="36" text-anchor="start">（Amazonギフト1,000円分プレゼント）</tspan><tspan x="0" dy="36" text-anchor="start">★☆★☆★☆★☆★☆★☆★☆★☆</tspan><tspan x="0" dy="36" text-anchor="start"> </tspan><tspan x="0" dy="36" text-anchor="start">アバンダンティアキャピタル株式会社が運営する、</tspan><tspan x="0" dy="36" text-anchor="start">投資型クラウドファンディング・サービス。</tspan><tspan x="0" dy="36" text-anchor="start">特定の招待コード（CAPIMA2305）を入力して、</tspan><tspan x="0" dy="36" text-anchor="start">新規投資家登録（口座開設）を完了したユーザーを対象に、</tspan><tspan x="0" dy="36" text-anchor="start">Amazonギフト1,000円分をプレゼントする、</tspan><tspan x="0" dy="36" text-anchor="start">期間限定キャンペーンが開催されています。</tspan>
+  </text>
+</svg>
