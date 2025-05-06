@@ -45,7 +45,7 @@ function generateSVGs() {
       const svg = `<?xml version="1.0" encoding="UTF-8"?>
 <svg width="800" height="${imageHeight}" viewBox="0 0 800 ${imageHeight}" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="${imageHeight}" fill="${settings.color}"/>
-  <text x="50" y="100" font-family="sans-serif" font-size="${fontSize}" fill="black">
+  <text x="0" y="20" font-family="sans-serif" font-size="${fontSize}" fill="black">
     ${formatMultilineText(settings.text, settings.font_size)}
   </text>
   ${settings.banner ? `
