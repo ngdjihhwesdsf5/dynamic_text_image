@@ -17,23 +17,18 @@ function formatMultilineText(text, fontSize, textAlign) {
   const xPosition = textAlign === 'center' ? '400' : '0';
   const textAnchor = textAlign === 'center' ? 'middle' : 'start';
   
-  // 複数行の場合、中央揃えするための調整
-  const totalHeight = lines.length * lineHeight;
-  const startY = -(totalHeight / 2) + (lineHeight / 2);
-  
   return lines.map((line, index) => 
-    `<tspan x="${xPosition}" dy="${index === 0 ? startY : lineHeight}" text-anchor="${textAnchor}">${line}</tspan>`
+    `<tspan x="${xPosition}" dy="${index === 0 ? 0 : lineHeight}" text-anchor="${textAnchor}">${line}</tspan>`
   ).join('');
 }
 
-// SVGの高さ計算関数
+// SVGの高さ計算関数を修正（バナー用の余白を追加）
 function calculateHeight(text, fontSize, padding) {
   const lines = text.split('\n');
   const lineHeight = parseInt(fontSize) * 1.2;
-  const paddingValues = padding ? padding.split(' ').map(p => parseInt(p)) : [0];
-  const paddingTop = paddingValues[0] || 0;
-  const paddingBottom = paddingValues.length > 1 ? paddingValues[2] : paddingTop;
-  const textHeight = (lines.length * lineHeight) + paddingTop + paddingBottom;
+  const paddingTop = padding ? parseInt(padding.split(' ')[0]) : 0;
+  const paddingBottom = padding ? parseInt(padding.split(' ')[0]) : 0;
+  const textHeight = 30 + (lines.length * lineHeight) + 10 + paddingTop + paddingBottom; // 上部余白30px、下部余白10px、パディング
   return Math.max(100, textHeight);
 }
 
@@ -51,26 +46,16 @@ function generateSVGs() {
       // その他のスタイル設定
       const fontWeight = settings.font_weight || 'normal';
       const textAlign = settings.text_align || 'left';
-      const verticalAlign = settings.vertical_align || 'top';
       const borderRadius = settings.border_radius || '0';
-      const textColor = settings.text_color || 'black';
+      const textColor = settings.text_color || 'black'; // テキスト色の設定、デフォルトはblack
       
-      // テキストのY位置を計算（垂直中央揃えに対応）
-      let yPosition;
-      if (verticalAlign === 'middle') {
-        yPosition = imageHeight / 2;
-      } else {
-        yPosition = 30 + (parseInt(padding.split(' ')[0]) || 0);
-      }
-      
-      // SVG生成
+      // 単純なSVG（文字化けしないよう配慮）
       const svg = `<?xml version="1.0" encoding="UTF-8"?>
 <svg width="800" height="${imageHeight}" viewBox="0 0 800 ${imageHeight}" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="${imageHeight}" fill="${backgroundColor}" rx="${borderRadius}" ry="${borderRadius}"/>
   <text 
     x="${textAlign === 'center' ? 400 : parseInt(padding.split(' ')[0] || 0)}" 
-    y="${yPosition}" 
-    dominant-baseline="${verticalAlign === 'middle' ? 'middle' : 'auto'}"
+    y="${30 + (parseInt(padding.split(' ')[0]) || 0)}" 
     font-family="sans-serif" 
     font-size="${fontSize}" 
     font-weight="${fontWeight}"
@@ -83,7 +68,7 @@ function generateSVGs() {
       // SVGファイルを保存
       fs.writeFileSync(path.join(distDir, `${imageName}.svg`), svg);
       
-      // アクセス用にjpgファイル名でもSVGを保存
+      // アクセス用にjpgファイル名でもSVGを保存。ただし、実際にJPG生成始める場合は、この処理改善要する。
       fs.writeFileSync(path.join(distDir, `${imageName}.jpg`), svg);
     } catch (err) {
       console.error(`Error generating ${imageName}:`, err);
