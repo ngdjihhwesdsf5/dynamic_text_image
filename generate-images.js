@@ -29,33 +29,18 @@ function calculateHeight(text, fontSize, hasBanner) {
   return Math.max(200, textHeight + bannerHeight + 80);
 }
 
-// テキスト位置調整関数を追加
-function getTextPosition(settings) {
-  if (settings.text_align === "center") {
-    return 'x="400" text-anchor="middle"';
-  }
-  return 'x="20"'; // デフォルトは左寄せ
-}
-
 // 各SVGを生成して保存
 function generateSVGs() {
   for (const [imageName, settings] of Object.entries(config)) {
     try {
       const fontSize = parseInt(settings.font_size);
       const imageHeight = calculateHeight(settings.text, fontSize);
-      const textColor = settings.color || "black";
-      const bgColor = settings.background_color || "#FFFFFF";
-      const borderRadius = settings.border_radius || "0";
-      const padding = settings.padding || "0";
-      const fontWeight = settings.font_weight || "normal";
-      const textPosition = getTextPosition(settings);
       
-      // SVG生成（スタイル設定を適用）
+      // 単純なSVG（文字化けしないよう配慮）
       const svg = `<?xml version="1.0" encoding="UTF-8"?>
 <svg width="800" height="${imageHeight}" viewBox="0 0 800 ${imageHeight}" xmlns="http://www.w3.org/2000/svg">
-  <rect width="800" height="${imageHeight}" fill="#FFFFFF"/>
-  <rect x="20" y="20" width="760" height="${imageHeight - 40}" rx="${borderRadius}" fill="${bgColor}"/>
-  <text ${textPosition} y="50" font-family="sans-serif" font-size="${fontSize}" font-weight="${fontWeight}" fill="${textColor}" style="padding: ${padding};">
+  <rect width="800" height="${imageHeight}" fill="${settings.color}"/>
+  <text x="0" y="30" font-family="sans-serif" font-size="${fontSize}" fill="black">
     ${formatMultilineText(settings.text, settings.font_size)}
   </text>
 </svg>`;
