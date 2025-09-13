@@ -45,8 +45,25 @@
       "border_radius": "8px",
       "padding": "14px 28px",
       "text_color": "white"
+    },
+    "image08": {
+      "text": "あなたが今検索中のマンガを、\n \n・無料で\n・ウィルスなどの心配もなく、\n \n思う存分、楽しみたいのであれば、\nコミックシーモアの、\n読み放題の無料体験が\nベストアンサー！\n　\n読み放題「フル」なら、\nラノベやBL物も含めて、\n19万冊以上が読み放題\n・読み放題「ライト」でも、\n人気少年・青年マンガを始め、\n8万冊以上が読み放題\n　\nどちらも、7日間完全無料で楽しめます。\nもちろん、\n無料期間中に解約した場合、\n料金は一切かかりません。\n　\n違法マンガ配信サイトと違って、\nウィルスや著作権侵害の心配は一切なし。\n　\n安心して、大好きな\nマンガの世界に没頭できます。\n↓↓↓",
+      "color": "#FFFFFF",
+      "font_size": "30px"
+    },
+    "image09": {
+      "text": "コミックシーモア読み放題体験はこちら",
+      "color": "#FFFFFF",
+      "background_color": "#ff6f61",
+      "font_size": "35px",
+      "font_weight": "bold",
+      "text_align": "center",
+      "border_radius": "8px",
+      "padding": "14px 28px",
+      "text_color": "white"
     }    
   }
+
 
 
 
