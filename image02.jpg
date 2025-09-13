@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="508" viewBox="0 0 800 508" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="508" fill="#FFFFFF" rx="0" ry="0"/>
+  <text 
+    x="0" 
+    y="30" 
+    font-family="sans-serif" 
+    font-size="30" 
+    font-weight="normal"
+    fill="black"
+    text-anchor="start">
+    <tspan x="0" dy="0" text-anchor="start">★☆★☆★☆★☆★☆★☆★☆★☆</tspan><tspan x="0" dy="36" text-anchor="start">AGクラウドファンディング</tspan><tspan x="0" dy="36" text-anchor="start">（Vプリカ1,000円分＋Amazonギフト1,000円プレゼント）</tspan><tspan x="0" dy="36" text-anchor="start">★☆★☆★☆★☆★☆★☆★☆★☆</tspan><tspan x="0" dy="36" text-anchor="start"> </tspan><tspan x="0" dy="36" text-anchor="start">融資型クラウドファンディング業界では有名。</tspan><tspan x="0" dy="36" text-anchor="start">国内上場企業等に対して資金を貸し付けるファンドに、</tspan><tspan x="0" dy="36" text-anchor="start">少額から投資をすることが出来るサービスを展開中。</tspan><tspan x="0" dy="36" text-anchor="start">新規会員登録を完了したユーザー全員に、</tspan><tspan x="0" dy="36" text-anchor="start">デビットカードとして使えるVプリカ残高1,000円分、及び、</tspan><tspan x="0" dy="36" text-anchor="start">Amazonギフト券1,000円を</tspan><tspan x="0" dy="36" text-anchor="start">ダブルでプレゼント（＝合計2,000円分）する、</tspan><tspan x="0" dy="36" text-anchor="start">お得なキャンペーンを開催中。</tspan>
+  </text>
+</svg>
