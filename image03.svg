@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="400" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#FFFFFF" rx="0" ry="0"/>
+  <text 
+    x="0" 
+    y="30" 
+    font-family="sans-serif" 
+    font-size="30" 
+    font-weight="normal"
+    fill="black"
+    text-anchor="start">
+    <tspan x="0" dy="0" text-anchor="start">★☆★☆★☆★☆★☆★☆★☆★☆</tspan><tspan x="0" dy="36" text-anchor="start">オルタナバンク</tspan><tspan x="0" dy="36" text-anchor="start">（現金1,500円分プレゼント）</tspan><tspan x="0" dy="36" text-anchor="start">★☆★☆★☆★☆★☆★☆★☆★☆</tspan><tspan x="0" dy="36" text-anchor="start"> </tspan><tspan x="0" dy="36" text-anchor="start">第一種金融商品取引業者（証券会社）が展開する、</tspan><tspan x="0" dy="36" text-anchor="start">投資型クラウドファンディング・サービス。</tspan><tspan x="0" dy="36" text-anchor="start">期間限定で、新規口座開設者全員に、</tspan><tspan x="0" dy="36" text-anchor="start">現金1,500円分をプレゼントする、</tspan><tspan x="0" dy="36" text-anchor="start">注目キャンペーンを開催中。</tspan>
+  </text>
+</svg>

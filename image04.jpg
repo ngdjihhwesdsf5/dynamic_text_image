@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="400" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#FFFFFF" rx="0" ry="0"/>
+  <text 
+    x="0" 
+    y="30" 
+    font-family="sans-serif" 
+    font-size="30" 
+    font-weight="normal"
+    fill="black"
+    text-anchor="start">
+    <tspan x="0" dy="0" text-anchor="start">★☆★☆★☆★☆★☆★☆★☆★☆</tspan><tspan x="0" dy="36" text-anchor="start">ジョイントアルファ</tspan><tspan x="0" dy="36" text-anchor="start">（Amazonギフト1,000円分プレゼント）</tspan><tspan x="0" dy="36" text-anchor="start">★☆★☆★☆★☆★☆★☆★☆★☆</tspan><tspan x="0" dy="36" text-anchor="start"> </tspan><tspan x="0" dy="36" text-anchor="start">東京証券取引所スタンダード市場上場の穴吹興産株式会社が運営する、</tspan><tspan x="0" dy="36" text-anchor="start">不動産クラウドファンディング・サービス。</tspan><tspan x="0" dy="36" text-anchor="start">新規投資家登録を完了したユーザー全員に、</tspan><tspan x="0" dy="36" text-anchor="start">Amazonギフト券1,000円分を</tspan><tspan x="0" dy="36" text-anchor="start">プレゼントするキャンペーンを開催しています。</tspan>
+  </text>
+</svg>
